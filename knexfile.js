@@ -27,35 +27,18 @@ module.exports = {
     connection: { filename: "./data/test.db3" },
   },
 
-  staging: {
-    client: "postgresql",
-    connection: {
-      database: "my_db",
-      user: "username",
-      password: "password",
-    },
-    pool: {
-      min: 2,
-      max: 10,
-    },
-    migrations: {
-      tableName: "knex_migrations",
-    },
-  },
-
   production: {
-    client: "postgresql",
+    client: "pg",
     connection: {
-      database: "my_db",
-      user: "username",
-      password: "password",
+      connectionString: process.env.PG_DB_URL,
+      ssl: true,
     },
     pool: {
-      min: 2,
+      min: 1,
       max: 10,
     },
     migrations: {
-      tableName: "knex_migrations",
+      directory: "./data/migrations",
     },
   },
 };
