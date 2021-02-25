@@ -10,10 +10,10 @@ const cors = require("cors");
 server.use(cors());
 
 //* Import Routers
-//const usersRouter = require("./users/users-router");
+const usersRouter = require("./users/users-router");
 
 //* Setup Routers
-// server.use("/api/users", usersRouter);
+server.use("/api/users", usersRouter);
 
 //* Export server
 module.exports = server;
