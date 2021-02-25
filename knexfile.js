@@ -28,15 +28,14 @@ module.exports = {
   },
 
   production: {
-    client: "pg",
+    client: "mysql",
     connection: {
-      connectionString: process.env.DATABASE_URL,
+      host: "192.185.82.211",
+      user: "ab4205_express",
+      password: "duYTITqjRObW",
+      database: "ab4205_express",
     },
-    searchPath: ["knex", "public"],
-    pool: {
-      min: 0,
-      max: 7,
-    },
+    pool: { min: 0, max: 7 },
     migrations: {
       directory: "./data/migrations",
     },
