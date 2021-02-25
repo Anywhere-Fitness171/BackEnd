@@ -1,16 +1,16 @@
 # Objective/Pitch
 
-These days, fitness classes can be held anywhere- a park, an unfinished basement or a garage- not just at a traditional gym. Certified fitness instructors need an easy way to take the awkwardness out of attendance taking and client payment processing. 
+These days, fitness classes can be held anywhere- a park, an unfinished basement or a garage- not just at a traditional gym. Certified fitness instructors need an easy way to take the awkwardness out of attendance taking and client payment processing.
 
-While you could use several mobile apps to accomplish this, **AnywhereFitness** is the all-in-one solution to meet your “on-location” fitness class needs. AnywhereFitness makes it painless for Instructors and Clients alike to hold and attend Fitness classes wherever they might be held. 
+While you could use several mobile apps to accomplish this, **AnywhereFitness** is the all-in-one solution to meet your “on-location” fitness class needs. AnywhereFitness makes it painless for Instructors and Clients alike to hold and attend Fitness classes wherever they might be held.
 
 Instructors can take attendance, request and process payments, create virtual “punch passes” for each type of class offered, alert clients of cancellations or location changes and so much more. Clients can easily find out information on classes - location, class size, start time and duration, as well as reschedule or cancel an upcoming appointment or reservation right from the mobile app.
 
 # MVP
 
-- [ ] Setup server using Express
+- [x] Setup server using Express
 - [ ] Create Data Model for users and classes
-- [ ] Create endpoints for `clients` and `instructors` to log in and register
+- [x] Create endpoints for `clients` and `instructors` to log in and register
 - [ ] Create CRUD endpoints for `classes`
 - [ ] Setup Authorization to be used with JSON Web Tokens
 - [ ] Create proper middleware for validation and authentication
@@ -25,14 +25,14 @@ Instructors can take attendance, request and process payments, create virtual �
 
 ### Create endpoints for `clients` and `instructors` to log in and register
 
-- [ ] Create necessary endpoints for `clients` and `instructors`
+- [x] Create necessary endpoints for `clients` and `instructors`
   - Login `POST` endpoint
   - Register `POST` endpoint
   - Get a specific user `GET` endpoint
   - User edit `PUT` endpoint
   - User Terminate `DELETE` endpoint
-- [ ] Ensure that the password is NOT plain text, but a secure hash
-- [ ] Follow the created Data Model for the user data. Main data includes:
+- [x] Ensure that the password is NOT plain text, but a secure hash
+- [x] Follow the created Data Model for the user data. Main data includes:
   - `Name`
   - `Username`
   - `Email`
@@ -59,7 +59,7 @@ Instructors can take attendance, request and process payments, create virtual �
 
 ### Setup Authorization to be used with JSON Web Tokens
 
-- [ ] Setup JSON Web Tokens 
+- [ ] Setup JSON Web Tokens
 - [ ] Create a function for the creation of the signature to generate token
 - [ ] Create a function to validate the token and compare the recieved client token with the backend signature token
 
