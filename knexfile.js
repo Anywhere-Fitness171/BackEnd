@@ -28,12 +28,12 @@ module.exports = {
   },
 
   production: {
-    client: "mysql",
+    client: process.env.DB_CLIENT,
     connection: {
-      host: "192.185.82.211",
-      user: "ab4205_express",
-      password: "duYTITqjRObW",
-      database: "ab4205_express",
+      host: process.env.DB_HOST,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASS,
+      database: process.env.DB_NAME,
     },
     pool: { min: 0, max: 7 },
     migrations: {
