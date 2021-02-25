@@ -10,7 +10,7 @@ Instructors can take attendance, request and process payments, create virtual â€
 
 - [x] Setup server using Express
 - [ ] Create Data Model for users and classes
-- [ ] Create endpoints for `clients` and `instructors` to log in and register
+- [x] Create endpoints for `clients` and `instructors` to log in and register
 - [ ] Create CRUD endpoints for `classes`
 - [ ] Setup Authorization to be used with JSON Web Tokens
 - [ ] Create proper middleware for validation and authentication
@@ -25,14 +25,14 @@ Instructors can take attendance, request and process payments, create virtual â€
 
 ### Create endpoints for `clients` and `instructors` to log in and register
 
-- [ ] Create necessary endpoints for `clients` and `instructors`
+- [x] Create necessary endpoints for `clients` and `instructors`
   - Login `POST` endpoint
   - Register `POST` endpoint
   - Get a specific user `GET` endpoint
   - User edit `PUT` endpoint
   - User Terminate `DELETE` endpoint
-- [ ] Ensure that the password is NOT plain text, but a secure hash
-- [ ] Follow the created Data Model for the user data. Main data includes:
+- [x] Ensure that the password is NOT plain text, but a secure hash
+- [x] Follow the created Data Model for the user data. Main data includes:
   - `Name`
   - `Username`
   - `Email`
