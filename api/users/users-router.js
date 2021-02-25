@@ -65,9 +65,28 @@ router.post("/login", validateUserBody.userLogin, (req, res) => {
     });
 });
 
+//-- [GET]
+// Get a user by ID
+router.get("/:id", (req, res) => {
+  const { id } = req.params;
+
+  User.getUserBy("id", id)
+    .then((user) => {
+      res.status(200).json(user);
+    })
+    .catch((err) => {
+      res
+        .status(500)
+        .json({ message: "Error logging user in", error: err.message });
+    });
+});
+
 //-- [PUT]
 // User Edit
-router.put("/:id", checkIfExists.users(User), (req, res) => {});
+// router.put("/:id", checkIfExists.users(User), (req, res) => {
+//   const {id} = req.params;
+
+// });
 
 //-- [DELETE]
 // User Delete

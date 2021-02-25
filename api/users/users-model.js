@@ -4,6 +4,7 @@ const db = require("../../data/db-config");
 //* Function to get user by [parameter]
 function getUserBy(parameter, value) {
   return db("users")
+    .select("id", "name", "username", "email")
     .where({ [parameter]: value })
     .first();
 }
