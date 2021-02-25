@@ -32,9 +32,10 @@ module.exports = {
     connection: {
       connectionString: process.env.DATABASE_URL,
     },
+    searchPath: ["knex", "public"],
     pool: {
-      min: 1,
-      max: 10,
+      min: 0,
+      max: 7,
     },
     migrations: {
       directory: "./data/migrations",
