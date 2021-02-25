@@ -51,6 +51,7 @@ router.post("/login", validateUserBody.userLogin, (req, res) => {
     .then((user) => {
       if (user && bcrypt.compareSync(password, user.password)) {
         const token = generateToken(user);
+
         res
           .status(200)
           .json({ message: `Welcome ${user.name}`, userId: user.id, token });
@@ -72,7 +73,15 @@ router.get("/:id", (req, res) => {
 
   User.getUserBy("id", id)
     .then((user) => {
-      res.status(200).json(user);
+      const userObj = {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        username: user.username,
+        role: user.role,
+      };
+
+      res.status(200).json(userObj);
     })
     .catch((err) => {
       res
