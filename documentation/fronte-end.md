@@ -67,13 +67,14 @@ This is the expected object for the endpoints above(this is mostly for the login
 
 - **NOTE:** For all endpoints below, the base URL is: `https://anywhere-fitness-171.herokuapp.com/api`
 
-| Method | Endpoint        | Description                                                                                                                                                                                                                                                                   |
-| ------ | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| POST   | /users/register | Creates a `user` using the information sent inside the `body` of the request. **NOTE:** Ensure to use only `client` or `instructor` on the role property.                                                                                                                     |
-| POST   | /users/login    | Use the credentials sent inside the `body` to authenticate the user. On success, you will receive a response with a welcome message, user ID and, a token.                                                                                                                    |
-| GET    | /users/:id      | **_You MUST send with an authorization header with the token!_** This endpoint is to get the data of a user. This is meant for frontend to be able to gather the data of the `logged in` user.                                                                                |
-| PUT    | /users/:id      | **_You MUST send with an authorization header with the token!_** The main purpose for this endpoint is for users to be able to update any data from their profile. This could be name, email, password, etc. The `id` parameter **_SHOULD_** be the id of the logged in user. |
-| DELETE | /users/:id      | **_You MUST send with an authorization header with the token!_** This endpoint is to delete a specific user. The `id` parameter **_SHOULD_** be the id of the logged in user.                                                                                                 |
+| Method | Endpoint               | Description                                                                                                                                                                                      |
+| ------ | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| POST   | /classes               | Creates a new `class` using the information sent inside the `body` of the request. **NOTE:** Ensure to use only `instructors` are able to use this endpoint.                                     |
+| GET    | /classes               | This will return an array of ALL available `classes`. The results will also include the instructor's name in the response                                                                        |
+| GET    | /classes/:id           | This will return an specific class from all the `classes`. If the ID supplied brings no results, it will return a 404 error.                                                                     |
+| GET    | /classes/:id/attendees | This will return an array of ALL attendees from a specific class(which is basically users with role `client` that have registered).                                                              |
+| PUT    | /classes/:id           | **_You MUST send with an authorization header with the token!_** This endpoint is to edit a specific class. The user MUST be an `instructor`, and must be logged in before using this endpoint   |
+| DELETE | /classes/:id           | **_You MUST send with an authorization header with the token!_** This endpoint is to delete a specific class. The user MUST be an `instructor`, and must be logged in before using this endpoint |
 
 ### Request body structure
 
