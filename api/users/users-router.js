@@ -16,7 +16,7 @@ const checkDuplicateRecords = require("../middleware/checkDuplicateRecords");
 const checkIfExists = require("../middleware/checkIfExists");
 const restrictAccess = require("../middleware/restrictAccess");
 
-//* Setup Endpoints
+//* Setup API Endpoints
 
 //-- [POST]
 // User Registration

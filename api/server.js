@@ -11,9 +11,11 @@ server.use(cors());
 
 //* Import Routers
 const usersRouter = require("./users/users-router");
+const classesRouter = require("./classes/classes-router");
 
 //* Setup Routers
 server.use("/api/users", usersRouter);
+server.use("/api/classes", classesRouter);
 
 //* Export server
 module.exports = server;

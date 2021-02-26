@@ -16,7 +16,28 @@ const users = (usersModel) => (req, res, next) => {
     .catch((err) => {
       res
         .status(500)
-        .json({ message: "Error logging user in", error: err.message });
+        .json({ message: "Error while getting user", error: err.message });
+    });
+};
+
+const classes = (classesModel) => (req, res, next) => {
+  const classData = req.body;
+
+  classesModel
+    .getClassBy("id", classData.id)
+    .then((classObj) => {
+      if (classObj) {
+        res
+          .status(403)
+          .json({ message: "A class with that id already exists!" });
+      } else {
+        next();
+      }
+    })
+    .catch((err) => {
+      res
+        .status(500)
+        .json({ message: "Error while getting class", error: err.message });
     });
 };
 
