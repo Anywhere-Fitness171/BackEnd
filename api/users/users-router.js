@@ -68,6 +68,19 @@ router.post("/login", validateUserBody.userLogin, (req, res) => {
 });
 
 //-- [GET]
+// Get all users TEMP
+router.get("/", (req, res) => {
+  User.getAll()
+    .then((users) => {
+      res.status(200).json(users);
+    })
+    .catch((err) => {
+      res
+        .status(500)
+        .json({ message: "Error getting all users", error: err.message });
+    });
+});
+
 // Get a user by ID
 router.get("/:id", restrictAccess, (req, res) => {
   const { id } = req.params;
