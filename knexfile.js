@@ -18,7 +18,7 @@ module.exports = {
       filename: "./data/anywhere-fitness.db3",
     },
     seeds: {
-      directory: "./api/seeds",
+      directory: "./data/seeds",
     },
   },
 

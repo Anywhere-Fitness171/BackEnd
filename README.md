@@ -12,9 +12,9 @@ Instructors can take attendance, request and process payments, create virtual â€
 # MVP
 
 - [x] Setup server using Express
-- [ ] Create Data Model for users and classes
+- [x] Create Data Model for users and classes
 - [x] Create endpoints for `clients` and `instructors` to log in and register
-- [ ] Create CRUD endpoints for `classes`
+- [x] Create CRUD endpoints for `classes`
 - [x] Setup Authorization to be used with JSON Web Tokens
 - [ ] Create proper middleware for validation and authentication
 
@@ -22,7 +22,7 @@ Instructors can take attendance, request and process payments, create virtual â€
 
 ### Create Data Model for users and classes
 
-- [ ] Design a Data Model for the data that will be stored in database
+- [x] Design a Data Model for the data that will be stored in database
   - Table for `users`
   - Table for `classes`
 
@@ -44,13 +44,13 @@ Instructors can take attendance, request and process payments, create virtual â€
 
 ### Create CRUD endpoints for `classes`
 
-- [ ] Create necessary endpoints for `classes`
+- [x] Create necessary endpoints for `classes`
   - Create a new class `POST` endpoint
   - Get all classes `GET` endpoint
   - Get specific class `GET` endpoint
   - Edit a specific class `PUT` endpoint
   - Delete a class `DELETE` endpoint
-- [ ] Follow the created Data Model for the classes data. Main data includes
+- [x] Follow the created Data Model for the classes data. Main data includes
   - `Name`
   - `Type`
   - `Start time`

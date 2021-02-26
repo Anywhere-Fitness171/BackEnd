@@ -5,8 +5,7 @@ const jwt = require("jsonwebtoken");
 const secrets = require("../config/secrets");
 
 module.exports = (req, res, next) => {
-  // The token is using the Bearer <token> approach
-  const token = req.headers?.authorization?.split(" ")[1];
+  const token = req.headers?.authorization;
 
   if (token) {
     jwt.verify(token, secrets.jwtSecret, (err) => {
@@ -17,6 +16,8 @@ module.exports = (req, res, next) => {
       }
     });
   } else {
-    res.status(403).json({ message: "Token not found" });
+    res
+      .status(403)
+      .json({ message: "Token not found. Need a token for authentication" });
   }
 };

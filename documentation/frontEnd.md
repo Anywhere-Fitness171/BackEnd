@@ -29,10 +29,10 @@ This is the expected object for the endpoints above(this is mostly for the login
 ```js
 {
 	name: "Richard Rodriguez",
-	username: "rmjuarez1234",
-	password: "test1234",
-	email: "rmjuarez12@gmail.com",
-	role : "admin"
+	username: "rmjuarez1234", // Must be unique. Will throw an error if it already exists
+	password: "test1234", // When creating, this must NOT be empty
+	email: "email@gmail.com", // Must be unique. Will throw an error if it already exists
+	role : "client" // For now, it MUST be either "client" or "instructor"
 }
 ```
 
@@ -41,7 +41,7 @@ This is the expected object for the endpoints above(this is mostly for the login
 ```js
 {
 	username: "rmjuarez1234",
-	password: "Xx12Uchiha"
+	password: "test1234"
 }
 ```
 
@@ -50,10 +50,10 @@ This is the expected object for the endpoints above(this is mostly for the login
 ```js
 {
 	name: "Richard Rodriguez",
-	username: "rmjuarez1234",
+	username: "rmjuarez1234", // Must be unique. Will throw an error if it already exists
 	password: "test5678", // This field is not required. If empty, we will use old password
-	email: "rmjuarez12@gmail.com",
-	role : "admin"
+	email: "email2@gmail.com", // Must be unique. Will throw an error if it already exists
+	role : "instructor" // For now, it MUST be either "client" or "instructor"
 }
 ```
 
