@@ -1,6 +1,11 @@
 //* Import db configuration
 const db = require("../../data/db-config");
 
+//* Function to get all users TEMP!!
+function getAll() {
+  return db("users");
+}
+
 //* Function to get user by [parameter]
 function getUserBy(parameter, value) {
   return db("users")
@@ -33,4 +38,5 @@ module.exports = {
   createUser,
   deleteUser,
   updateUser,
+  getAll,
 };
