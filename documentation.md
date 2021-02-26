@@ -2,7 +2,7 @@
 
 This part of the documentation is for reference to frontend developers
 
-## API Endpoints
+## API Endpoints (Users)
 
 - **NOTE:** For all endpoints below, the base URL is: `https://anywhere-fitness-171.herokuapp.com/api`
 
@@ -50,3 +50,11 @@ This is the expected object for the endpoints above(this is mostly for the login
 	role : "admin"
 }
 ```
+
+## API Endpoints (Classes)
+
+WIP
+
+### Request body structure
+
+WIP
