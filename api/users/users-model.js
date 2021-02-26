@@ -22,9 +22,15 @@ function deleteUser(id) {
   return db("users").where({ id }).del();
 }
 
+//* Function to update user
+function updateUser(changes, id) {
+  return db("users").where({ id }).update(changes);
+}
+
 //* Export functions
 module.exports = {
   getUserBy,
   createUser,
   deleteUser,
+  updateUser,
 };

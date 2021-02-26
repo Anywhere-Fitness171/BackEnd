@@ -14,6 +14,7 @@ const User = require("./users-model");
 const validateUserBody = require("../middleware/validateUserBody");
 const checkDuplicateRecords = require("../middleware/checkDuplicateRecords");
 const checkIfExists = require("../middleware/checkIfExists");
+const restrictAccess = require("../middleware/restrictAccess");
 
 //* Setup Endpoints
 
@@ -68,50 +69,78 @@ router.post("/login", validateUserBody.userLogin, (req, res) => {
 
 //-- [GET]
 // Get a user by ID
-router.get("/:id", (req, res) => {
+router.get("/:id", restrictAccess, (req, res) => {
   const { id } = req.params;
 
   User.getUserBy("id", id)
     .then((user) => {
-      const userObj = {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        username: user.username,
-        role: user.role,
-      };
+      if (user) {
+        const userObj = {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          username: user.username,
+          role: user.role,
+        };
 
-      res.status(200).json(userObj);
+        res.status(200).json(userObj);
+      } else {
+        res.status(404).json({ message: "User with such ID does not exist" });
+      }
     })
     .catch((err) => {
       res
         .status(500)
-        .json({ message: "Error logging user in", error: err.message });
+        .json({ message: "Error getting user", error: err.message });
     });
 });
 
 //-- [PUT]
 // User Edit
-router.put("/:id", checkIfExists.users(User), (req, res) => {
-  const { id } = req.params;
-  res.send("hello");
-});
+router.put(
+  "/:id",
+  [
+    checkIfExists.users(User),
+    restrictAccess,
+    validateUserBody.userUpdate(User),
+  ],
+  (req, res) => {
+    const { id } = req.params;
+    const userData = req.userData;
+
+    User.updateUser(userData, id)
+      .then(() => {
+        res.status(200).json({ message: "User updated successfully" });
+      })
+      .catch((err) => {
+        res
+          .status(500)
+          .json({ message: "Error updating user", error: err.message });
+      });
+  }
+);
 
 //-- [DELETE]
 // User Delete
-router.delete("/:id", checkIfExists.users(User), (req, res) => {
-  const { id } = req.params;
+router.delete(
+  "/:id",
+  [checkIfExists.users(User), restrictAccess],
+  (req, res) => {
+    const { id } = req.params;
 
-  User.deleteUser(id)
-    .then(() => {
-      res.status(200).json({ message: "User has been deleted successfully!" });
-    })
-    .catch((err) => {
-      res
-        .status(500)
-        .json({ message: "Error logging user in", error: err.message });
-    });
-});
+    User.deleteUser(id)
+      .then(() => {
+        res
+          .status(200)
+          .json({ message: "User has been deleted successfully!" });
+      })
+      .catch((err) => {
+        res
+          .status(500)
+          .json({ message: "Error logging user in", error: err.message });
+      });
+  }
+);
 
 //* Function to create the signature for the token
 function generateToken(user) {
