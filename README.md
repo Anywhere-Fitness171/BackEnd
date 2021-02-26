@@ -6,6 +6,9 @@ While you could use several mobile apps to accomplish this, **AnywhereFitness** 
 
 Instructors can take attendance, request and process payments, create virtual “punch passes” for each type of class offered, alert clients of cancellations or location changes and so much more. Clients can easily find out information on classes - location, class size, start time and duration, as well as reschedule or cancel an upcoming appointment or reservation right from the mobile app.
 
+- [Full Project Information](https://www.notion.so/Anywhere-Fitness-9ef83f1d877f44179b45cd26d14f1784).
+- [Product Vision Document](https://docs.google.com/document/d/1y2I_qMRxRZgtcGxaS3he8SRFDaFmbiMuFIDOV_ZZkGY/edit)
+
 # MVP
 
 - [x] Setup server using Express
