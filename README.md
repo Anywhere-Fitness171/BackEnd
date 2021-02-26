@@ -12,7 +12,7 @@ Instructors can take attendance, request and process payments, create virtual â€
 - [ ] Create Data Model for users and classes
 - [x] Create endpoints for `clients` and `instructors` to log in and register
 - [ ] Create CRUD endpoints for `classes`
-- [ ] Setup Authorization to be used with JSON Web Tokens
+- [x] Setup Authorization to be used with JSON Web Tokens
 - [ ] Create proper middleware for validation and authentication
 
 ## Detailed tasks
@@ -59,16 +59,16 @@ Instructors can take attendance, request and process payments, create virtual â€
 
 ### Setup Authorization to be used with JSON Web Tokens
 
-- [ ] Setup JSON Web Tokens
-- [ ] Create a function for the creation of the signature to generate token
-- [ ] Create a function to validate the token and compare the recieved client token with the backend signature token
+- [x] Setup JSON Web Tokens
+- [x] Create a function for the creation of the signature to generate token
+- [x] Create a function to validate the token and compare the recieved client token with the backend signature token
 
 ### Create proper middleware for validation and authentication
 
-- [ ] Setup a middleware to authenticate that the data that comes from frontend is valid
+- [x] Setup a middleware to authenticate that the data that comes from frontend is valid
   - Ensure that for users, `username`, `email`, and `password` are all required
   - Ensure that for classes, all fields are required.
-- [ ] Setup a middleware that ensures we get NO duplicate users
+- [x] Setup a middleware that ensures we get NO duplicate users
   - Check any `email` duplicates
   - Check any `username` duplicates
   - Check any `id` duplicates
