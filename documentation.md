@@ -3,7 +3,8 @@
 This part of the documentation is for reference to frontend developers. Below you will find the endpoints necessary to communicate with the backend. App has already been deployed, so it can be accessed remotely. Below you will find:
 
 - [API Endpoints (Users)](https://github.com/Anywhere-Fitness171/BackEnd/blob/Richard-Rodriguez/documentation.md#api-endpoints-users)
-  - Request body structure
+  - [Request body structure](https://github.com/Anywhere-Fitness171/BackEnd/blob/Richard-Rodriguez/documentation.md#request-body-structure)
+  - [Notes](https://github.com/Anywhere-Fitness171/BackEnd/blob/Richard-Rodriguez/documentation.md#notes)
 - [API Endpoints (Classes)](https://github.com/Anywhere-Fitness171/BackEnd/blob/Richard-Rodriguez/documentation.md#api-endpoints-classes)
   - Request body structure
 
@@ -55,6 +56,12 @@ This is the expected object for the endpoints above(this is mostly for the login
 	role : "admin"
 }
 ```
+
+### Notes
+
+- I have setup measures in the backend to ensure we have no duplicates. Please check the responses you get from the API, as I have specified messages so you can debug if needed(i.e. if there is no username on login you will get a responser: "Please provide a username and password!").
+- The token provided by the backend has a lifetime of 1hr. After 1hr, the user will need to login again to get a new token
+- Please make sure to do proper validation to forms, to ensure the data we are receiving is the correct one and not the wrong one(i.e. for emails, ensure is a valid email).
 
 ## API Endpoints (Classes)
 
