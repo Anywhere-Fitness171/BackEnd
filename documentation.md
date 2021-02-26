@@ -1,6 +1,11 @@
 # Front End
 
-This part of the documentation is for reference to frontend developers
+This part of the documentation is for reference to frontend developers. Below you will find the endpoints necessary to communicate with the backend. App has already been deployed, so it can be accessed remotely. Below you will find:
+
+- [API Endpoints (Users)](https://github.com/Anywhere-Fitness171/BackEnd/blob/Richard-Rodriguez/documentation.md#api-endpoints-users)
+  - Request body structure
+- [API Endpoints (Classes)](https://github.com/Anywhere-Fitness171/BackEnd/blob/Richard-Rodriguez/documentation.md#api-endpoints-classes)
+  - Request body structure
 
 ## API Endpoints (Users)
 
