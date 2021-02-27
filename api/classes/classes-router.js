@@ -15,7 +15,7 @@ const validateClassBody = require("../middleware/validateClassBody");
 
 //-- [POST]
 // Create a new class
-router.post("/", [validateClassBody.mainBody], (req, res) => {
+router.post("/", [validateClassBody.mainBody, restrictAccess], (req, res) => {
   const classObj = req.body;
 
   Classes.createClass(classObj)
