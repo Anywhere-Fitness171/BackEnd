@@ -13,8 +13,8 @@ function getAll() {
 function getAttendees(id) {
   return db("classes as c")
     .where("c.id", id)
-    .innerJoin("clients_classes as cc", "cc.classes_id", "c.id")
-    .innerJoin("users as u", "cc.user_id", "u.id")
+    .innerJoin("attendees as at", "at.classes_id", "c.id")
+    .innerJoin("users as u", "at.user_id", "u.id")
     .select(
       "c.id as class_id",
       "c.name as class_name",
