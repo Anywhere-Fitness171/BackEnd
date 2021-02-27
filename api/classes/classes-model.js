@@ -27,10 +27,10 @@ function getAttendees(id) {
 
 //* Function to get the total amount of attendees of a class
 function getAttendeesNum(id) {
-  return db("classes")
-    .where({ id })
-    .innerJoin("clients_classes as cc", "cc.classes_id", "classes.id")
-    .count("cc.classes_id as attendees_amount");
+  return db("classes as c")
+    .where("c.id", id)
+    .innerJoin("attendees as at", "at.classes_id", "c.id")
+    .count("at.user_id as attendees_amount");
 }
 
 //* Function to get class by [parameter]

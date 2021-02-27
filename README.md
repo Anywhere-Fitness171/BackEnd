@@ -15,8 +15,9 @@ Instructors can take attendance, request and process payments, create virtual â€
 - [x] Create Data Model for users and classes
 - [x] Create endpoints for `clients` and `instructors` to log in and register
 - [x] Create CRUD endpoints for `classes`
+- [ ] Setup endpoint to register users to a certain class
 - [x] Setup Authorization to be used with JSON Web Tokens
-- [ ] Create proper middleware for validation and authentication
+- [x] Create proper middleware for validation and authentication
 
 ## Detailed tasks
 
@@ -60,6 +61,13 @@ Instructors can take attendance, request and process payments, create virtual â€
   - `Current number of registered attendees`
   - `Max class size`
 
+### Setup endpoint to register users to a certain class
+
+- [x] Setup an endpoint that can retrieve ALL attendees from a `class`
+- [x] Setup an endpoint that will get the total number of attendess from a `class`
+- [ ] Setup an endpoint that will register a user to a specific class
+- [ ] Setup a way for users to opt out of registration
+
 ### Setup Authorization to be used with JSON Web Tokens
 
 - [x] Setup JSON Web Tokens
@@ -75,7 +83,7 @@ Instructors can take attendance, request and process payments, create virtual â€
   - Check any `email` duplicates
   - Check any `username` duplicates
   - Check any `id` duplicates
-- [ ] Setup a middleware that ensures we get NO duplicate class ID
+- [x] Setup a middleware that ensures we get NO duplicate class ID
   - Check any `id` duplicates
 
 # Stretch

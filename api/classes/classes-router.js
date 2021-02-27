@@ -6,7 +6,6 @@ const router = express.Router();
 const Classes = require("./classes-model");
 
 //* Import Middleware
-const checkDuplicateRecords = require("../middleware/checkDuplicateRecords");
 const checkIfExists = require("../middleware/checkIfExists");
 const restrictAccess = require("../middleware/restrictAccess");
 const validateClassBody = require("../middleware/validateClassBody");
@@ -15,7 +14,7 @@ const validateClassBody = require("../middleware/validateClassBody");
 
 //-- [POST]
 // Create a new class
-router.post("/", validateClassBody, (req, res) => {
+router.post("/", [validateClassBody, restrictAccess], (req, res) => {
   const classObj = req.body;
 
   Classes.createClass(classObj)
@@ -30,6 +29,19 @@ router.post("/", validateClassBody, (req, res) => {
 });
 
 //-- [GET]
+// TEST
+router.get("/:id/attendeesNum", (req, res) => {
+  const { id } = req.params;
+
+  Classes.getAttendeesNum(id)
+    .then((response) => {
+      res.status(200).json(response);
+    })
+    .catch((err) => {
+      res.status(500).json(err.message);
+    });
+});
+
 // Get ALL classes
 router.get("/", (req, res) => {
   Classes.getAll()
