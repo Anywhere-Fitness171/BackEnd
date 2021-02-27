@@ -33,11 +33,19 @@ function getAttendeesNum(id) {
     .count("at.user_id as attendees_amount");
 }
 
+//* Function to register attendee
+function registerAttendee(attendee) {
+  return db("attendees").insert(attendee);
+}
+
 //* Function to get class by [parameter]
 function getClassBy(parameter, value) {
-  return db("classes")
-    .where({ [parameter]: value })
-    .first();
+  return db("classes as c")
+    .where({ [`c.${parameter}`]: value })
+    .first()
+    .innerJoin("instructors_classes as ic", "ic.classes_id", "c.id")
+    .innerJoin("users as u", "ic.user_id", "u.id")
+    .select("c.*", "u.name as instructor", "ic.user_id");
 }
 
 //* Function to create a new class
@@ -68,4 +76,5 @@ module.exports = {
   updateClass,
   getAttendees,
   getAttendeesNum,
+  registerAttendee,
 };
