@@ -1,5 +1,7 @@
 //* This middleware will be used to ensure that there is no empty data when creating a class
-module.exports = (req, res, next) => {
+
+// Check class body
+const mainBody = (req, res, next) => {
   const classData = req.body;
 
   if (
@@ -17,4 +19,20 @@ module.exports = (req, res, next) => {
   } else {
     next();
   }
+};
+
+// Check attendee body
+const attendeeBody = (req, res, next) => {
+  const attendeeData = req.body;
+
+  if (!attendeeData || !attendeeData.user_id) {
+    res.status(400).json("Please specify a user id");
+  } else {
+    next();
+  }
+};
+
+module.exports = {
+  mainBody,
+  attendeeBody,
 };

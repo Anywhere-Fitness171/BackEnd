@@ -41,7 +41,36 @@ const classes = (classesModel) => (req, res, next) => {
     });
 };
 
+const attendees = (classesModel) => (req, res, next) => {
+  const { id } = req.params;
+  const { user_id } = req.body;
+
+  let duplicate;
+
+  classesModel
+    .getAttendees(id)
+    .then((attendeesArr) => {
+      attendeesArr.map((att) => {
+        if (att.user_id === user_id) {
+          res.status(403).json({ message: "Attendee CAN'T register twice" });
+          duplicate = true;
+        }
+      });
+
+      if (!duplicate) {
+        next();
+      }
+    })
+    .catch((err) => {
+      res
+        .status(500)
+        .json({ message: "Error while getting attendees", error: err.message });
+    });
+};
+
 //* Export functions
 module.exports = {
   users,
+  classes,
+  attendees,
 };

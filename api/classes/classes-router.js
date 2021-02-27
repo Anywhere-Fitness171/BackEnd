@@ -7,6 +7,7 @@ const Classes = require("./classes-model");
 
 //* Import Middleware
 const checkIfExists = require("../middleware/checkIfExists");
+const checkDuplicateRecords = require("../middleware/checkDuplicateRecords");
 const restrictAccess = require("../middleware/restrictAccess");
 const validateClassBody = require("../middleware/validateClassBody");
 
@@ -14,7 +15,7 @@ const validateClassBody = require("../middleware/validateClassBody");
 
 //-- [POST]
 // Create a new class
-router.post("/", [validateClassBody, restrictAccess], (req, res) => {
+router.post("/", [validateClassBody.mainBody], (req, res) => {
   const classObj = req.body;
 
   Classes.createClass(classObj)
@@ -28,20 +29,36 @@ router.post("/", [validateClassBody, restrictAccess], (req, res) => {
     });
 });
 
+// Register a user as attendee
+router.post(
+  "/:id/attendees",
+  [
+    restrictAccess,
+    checkIfExists.classes(Classes),
+    validateClassBody.attendeeBody,
+    checkDuplicateRecords.attendees(Classes),
+  ],
+  (req, res) => {
+    const { id } = req.params;
+
+    const attendee = {
+      user_id: req.body.user_id,
+      classes_id: id,
+    };
+
+    Classes.registerAttendee(attendee)
+      .then(() => {
+        res.status(201).json({ message: "Attendee has been registered" });
+      })
+      .catch((err) => {
+        res
+          .status(500)
+          .json({ message: "Error registering attendee", error: err });
+      });
+  }
+);
+
 //-- [GET]
-// TEST
-router.get("/:id/attendeesNum", (req, res) => {
-  const { id } = req.params;
-
-  Classes.getAttendeesNum(id)
-    .then((response) => {
-      res.status(200).json(response);
-    })
-    .catch((err) => {
-      res.status(500).json(err.message);
-    });
-});
-
 // Get ALL classes
 router.get("/", (req, res) => {
   Classes.getAll()
@@ -75,11 +92,24 @@ router.get("/:id/attendees", checkIfExists.classes(Classes), (req, res) => {
     });
 });
 
+// Get attendee amount of a class
+router.get("/:id/attendeesNum", (req, res) => {
+  const { id } = req.params;
+
+  Classes.getAttendeesNum(id)
+    .then((response) => {
+      res.status(200).json(response);
+    })
+    .catch((err) => {
+      res.status(500).json(err.message);
+    });
+});
+
 //-- [PUT]
 // Update/edit a class
 router.put(
   "/:id",
-  [restrictAccess, checkIfExists.classes(Classes), validateClassBody],
+  [restrictAccess, checkIfExists.classes(Classes), validateClassBody.mainBody],
   (req, res) => {
     const { id } = req.params;
     const classObj = req.body;
