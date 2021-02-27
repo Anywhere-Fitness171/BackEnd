@@ -36,7 +36,7 @@ exports.up = function (knex) {
         .onDelete("CASCADE");
       tbl.primary(["user_id", "classes_id"]);
     })
-    .createTable("clients_classes", (tbl) => {
+    .createTable("attendees", (tbl) => {
       tbl
         .integer("user_id")
         .unsigned()
@@ -57,7 +57,7 @@ exports.up = function (knex) {
 
 exports.down = function (knex) {
   return knex.schema
-    .dropTableIfExists("instructors_classes")
+    .dropTableIfExists("attendees")
     .dropTableIfExists("clients_classes")
     .dropTableIfExists("classes")
     .dropTableIfExists("users");

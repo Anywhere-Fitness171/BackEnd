@@ -50,6 +50,19 @@ router.get("/:id", checkIfExists.classes(Classes), (req, res) => {
   res.status(200).json(classObj);
 });
 
+// Get the attendees from a specific class
+router.get("/:id/attendees", checkIfExists.classes(Classes), (req, res) => {
+  const { id } = req.params;
+
+  Classes.getAttendees(id)
+    .then((attendees) => {
+      res.status(200).json(attendees);
+    })
+    .catch((err) => {
+      res.status(500).json(err.message);
+    });
+});
+
 //-- [PUT]
 // Update/edit a class
 router.put(

@@ -6,7 +6,8 @@ This part of the documentation is for reference to frontend developers. Below yo
   - [Request body structure](https://github.com/Anywhere-Fitness171/BackEnd/blob/Richard-Rodriguez/documentation.md#request-body-structure)
   - [Notes](https://github.com/Anywhere-Fitness171/BackEnd/blob/Richard-Rodriguez/documentation.md#notes)
 - [API Endpoints (Classes)](https://github.com/Anywhere-Fitness171/BackEnd/blob/Richard-Rodriguez/documentation.md#api-endpoints-classes)
-  - Request body structure
+  - [Request body structure](https://github.com/Anywhere-Fitness171/BackEnd/blob/Richard-Rodriguez/documentation.md#api-endpoints-classes)
+  - [Notes](https://github.com/Anywhere-Fitness171/BackEnd/blob/Richard-Rodriguez/documentation.md#notes)
 
 ## API Endpoints (Users)
 
@@ -22,7 +23,7 @@ This part of the documentation is for reference to frontend developers. Below yo
 
 ### Request body structure
 
-This is the expected object for the endpoints above(this is mostly for the login/registration/update)
+These are the expected objects for the endpoints above(this is mostly for the login/registration/update)
 
 - [POST] `/users/register` - For the registration, use the sample object below as reference on what the endpoint is expecting to receive. Currently, all the fields below are **_REQUIRED_**
 
@@ -65,8 +66,51 @@ This is the expected object for the endpoints above(this is mostly for the login
 
 ## API Endpoints (Classes)
 
-WIP
+- **NOTE:** For all endpoints below, the base URL is: `https://anywhere-fitness-171.herokuapp.com/api`
+
+| Method | Endpoint               | Description                                                                                                                                                                                      |
+| ------ | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| POST   | /classes               | Creates a new `class` using the information sent inside the `body` of the request. **NOTE:** Ensure to use only `instructors` are able to use this endpoint.                                     |
+| GET    | /classes               | This will return an array of ALL available `classes`. The results will also include the instructor's name in the response                                                                        |
+| GET    | /classes/:id           | This will return an specific class from all the `classes`. If the ID supplied brings no results, it will return a 404 error.                                                                     |
+| GET    | /classes/:id/attendees | This will return an array of ALL attendees from a specific class(which is basically users with role `client` that have registered).                                                              |
+| PUT    | /classes/:id           | **_You MUST send with an authorization header with the token!_** This endpoint is to edit a specific class. The user MUST be an `instructor`, and must be logged in before using this endpoint   |
+| DELETE | /classes/:id           | **_You MUST send with an authorization header with the token!_** This endpoint is to delete a specific class. The user MUST be an `instructor`, and must be logged in before using this endpoint |
 
 ### Request body structure
 
-WIP
+These are the expected objects for the endpoints above(This is mostly for creating/editing `classes`). Remember that the user MUST be logged in before doing anything. Otherwise, you will get an authentication error.
+
+- [POST] `/classes` - The objext below is what is expected from the request body. Remember that you MUST make sure that the user has a `instructor` role. Currently, all the fields below are **_REQUIRED_**
+
+```js
+{
+	name: "Jogging",
+	type: "Physical", // This type can be anything. That is up to front end
+	date_time: "Mar. 28, 2021 - 12:00PM", // Format can be different. This is just for reference
+	duration: "1hrs",
+	intensity: "Med",
+	location: "Miami Gym",
+	max_size: 40
+}
+```
+
+- [PUT] `/classes/:id` - This is to update a class. The structure of the object is the same as the above one.
+
+```js
+{
+	name: "Jogging",
+	type: "Physical",
+	date_time: "Mar. 28, 2021 - 12:00PM",
+	duration: "1hrs",
+	intensity: "Med",
+	location: "Miami Gym",
+	max_size: 40
+}
+```
+
+### Notes
+
+- For anything that requires on entering data on database(such as creating new class, or updating it), ALWAYS ensure to send a token on the header. Otherwise, you will get an authentication error
+- Creating classes and managing classes is meant to be only for instructors, so make sure only users with `instructor` roles can access such functions
+- Any type of user will be able to register to attend. So `instructors` and `clients` will be able to register for a class.
