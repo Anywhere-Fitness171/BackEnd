@@ -94,7 +94,8 @@ These are the expected objects for the endpoints above(This is mostly for creati
 	duration: "1hrs",
 	intensity: "Med",
 	location: "Miami Gym",
-	max_size: 40
+	max_size: 40,
+	instructor_id: 2 // This is the ID of the user posting the class
 }
 ```
 
@@ -116,7 +117,8 @@ These are the expected objects for the endpoints above(This is mostly for creati
 	duration: "1hrs",
 	intensity: "Med",
 	location: "Miami Gym",
-	max_size: 40
+	max_size: 40,
+	instructor_id: 2
 }
 ```
 

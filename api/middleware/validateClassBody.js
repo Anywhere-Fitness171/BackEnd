@@ -10,7 +10,8 @@ const mainBody = (req, res, next) => {
     !classData.date_time ||
     !classData.duration ||
     !classData.location ||
-    !classData.max_size
+    !classData.max_size ||
+    !classData.instructor_id
   ) {
     res.status(400).json({
       message:
