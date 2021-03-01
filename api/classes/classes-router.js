@@ -19,7 +19,7 @@ router.post("/", [validateClassBody.mainBody, restrictAccess], (req, res) => {
   const classObj = req.body;
 
   Classes.createClass(classObj)
-    .then((newClass) => {
+    .then(() => {
       res.status(201).json({ message: "Class created successfully!" });
     })
     .catch((err) => {
