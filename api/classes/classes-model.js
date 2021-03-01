@@ -60,10 +60,23 @@ function getClassBy(parameter, value) {
 
 //* Function to create a new class
 function createClass(classObj) {
+  const newClass = {
+    name: classObj.name,
+    type: classObj.type,
+    date_time: classObj.date_time,
+    duration: classObj.duration,
+    intensity: classObj.intensity,
+    location: classObj.location,
+    max_size: classObj.max_size,
+  };
+
   return db("classes")
-    .insert(classObj)
+    .insert(newClass)
     .then((id) => {
-      return getClassBy("id", id);
+      return db("instructors_classes").insert({
+        classes_id: id,
+        user_id: classObj.instructor_id,
+      });
     });
 }
 
