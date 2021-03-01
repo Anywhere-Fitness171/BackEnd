@@ -149,5 +149,33 @@ router.delete(
   }
 );
 
+// Remove an attendee from a class
+router.delete(
+  "/:id/attendees",
+  [restrictAccess, checkIfExists.classes(Classes)],
+  (req, res) => {
+    const { user_id } = req.body;
+    const { id } = req.params;
+
+    Classes.removeAttendee(user_id, id)
+      .then((response) => {
+        if (response === 0) {
+          res.status(404).json({
+            message: "Attendee/class not found!",
+          });
+        } else {
+          res.status(200).json({
+            message: "Attendee removed successfully!",
+          });
+        }
+      })
+      .catch((err) => {
+        res
+          .status(500)
+          .json({ message: "Error removing attendee", error: err.message });
+      });
+  }
+);
+
 //* Export router
 module.exports = router;
