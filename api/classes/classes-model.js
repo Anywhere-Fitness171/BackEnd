@@ -38,6 +38,16 @@ function registerAttendee(attendee) {
   return db("attendees").insert(attendee);
 }
 
+//* Function to remove attendee
+function removeAttendee(attendee, classId) {
+  return db("attendees")
+    .where({
+      user_id: attendee,
+      classes_id: classId,
+    })
+    .del();
+}
+
 //* Function to get class by [parameter]
 function getClassBy(parameter, value) {
   return db("classes as c")
@@ -77,4 +87,5 @@ module.exports = {
   getAttendees,
   getAttendeesNum,
   registerAttendee,
+  removeAttendee,
 };

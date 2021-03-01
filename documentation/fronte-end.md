@@ -78,6 +78,7 @@ These are the expected objects for the endpoints above(this is mostly for the lo
 | GET    | /classes/:id/attendeesNum | This will return the total number of attendees from a specific class.                                                                                                                                                         |
 | PUT    | /classes/:id              | **_You MUST send with an authorization header with the token!_** This endpoint is to edit a specific class. The user MUST be an `instructor`, and must be logged in before using this endpoint                                |
 | DELETE | /classes/:id              | **_You MUST send with an authorization header with the token!_** This endpoint is to delete a specific class. The user MUST be an `instructor`, and must be logged in before using this endpoint                              |
+| DELETE | /classes/:id/attendees    | **_You MUST send with an authorization header with the token!_** This endpoint just removes a user from the attendee list from a `class`                                                                                      |
 
 ### Request body structure
 
@@ -97,6 +98,14 @@ These are the expected objects for the endpoints above(This is mostly for creati
 }
 ```
 
+- [POST] `/classes/:id/attendees` - This will register a user to a certain class. The ID parameter in here is the class ID, and the only thing you need to pass is the User's ID:
+
+```js
+{
+  user_id: 3;
+}
+```
+
 - [PUT] `/classes/:id` - This is to update a class. The structure of the object is the same as the above one.
 
 ```js
@@ -108,6 +117,14 @@ These are the expected objects for the endpoints above(This is mostly for creati
 	intensity: "Med",
 	location: "Miami Gym",
 	max_size: 40
+}
+```
+
+- [DELETE] `/classes/:id/attendees` - This will remoce an attendee from a certain class. The ID parameter in here is the class ID, and the only thing you need to pass is the User's ID:
+
+```js
+{
+  user_id: 3;
 }
 ```
 
