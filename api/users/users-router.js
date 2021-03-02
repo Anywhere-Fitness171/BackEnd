@@ -142,15 +142,15 @@ router.delete(
     const { id } = req.params;
 
     User.deleteUser(id)
-      .then(() => {
+      .then((test) => {
         res
           .status(200)
-          .json({ message: "User has been deleted successfully!" });
+          .json({ message: "User has been deleted successfully!", test: test });
       })
       .catch((err) => {
         res
           .status(500)
-          .json({ message: "Error logging user in", error: err.message });
+          .json({ message: "Error deleting user", error: err.message });
       });
   }
 );
