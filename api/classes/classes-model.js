@@ -1,4 +1,5 @@
 //* Import DB config
+const { andWhere } = require("../../data/db-config");
 const db = require("../../data/db-config");
 
 //* Function to get all classes
@@ -40,9 +41,10 @@ function registerAttendee(attendee) {
 
 //* Function to remove attendee
 function removeAttendee(attendee, classId) {
-  return db("attendees").where({
-    classes_id: classId,
-  });
+  return db("attendees as a")
+    .where("a.classes_id", classId)
+    .andWhere("a.user_id", attendee)
+    .del();
 }
 
 //* Function to get class by [parameter]
