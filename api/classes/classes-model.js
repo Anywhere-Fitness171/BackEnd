@@ -42,7 +42,6 @@ function registerAttendee(attendee) {
 function removeAttendee(attendee, classId) {
   return db("attendees").where({
     user_id: attendee,
-    classes_id: classId,
   });
 }
 
