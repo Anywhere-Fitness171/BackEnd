@@ -15,7 +15,7 @@ const mainBody = (req, res, next) => {
   ) {
     res.status(400).json({
       message:
-        "Please make sure to include name, type, date/time, duration, location, and max class size",
+        "Please make sure to include name, type, date/time, duration, location, instructor ID, and max class size",
     });
   } else {
     next();

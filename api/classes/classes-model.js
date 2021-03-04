@@ -87,7 +87,17 @@ function deleteClass(id) {
 
 //* Function to update a class
 function updateClass(changes, id) {
-  return db("classes").where({ id }).update(changes);
+  const updatedClass = {
+    name: changes.name,
+    type: changes.type,
+    date_time: changes.date_time,
+    duration: changes.duration,
+    intensity: changes.intensity,
+    location: changes.location,
+    max_size: changes.max_size,
+  };
+
+  return db("classes").where({ id }).update(updatedClass);
 }
 
 //* Export functions
