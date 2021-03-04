@@ -161,11 +161,11 @@ router.delete(
         if (response === 0) {
           res.status(404).json({
             message: "Attendee/class not found!",
-            test: response,
           });
         } else {
           res.status(200).json({
             message: "Attendee removed successfully!",
+            test: response,
           });
         }
       })
