@@ -75,6 +75,40 @@ function updateUser(changes, id) {
   return db("users").where({ id }).update(changes);
 }
 
+//* Function to get all classes from a instructor
+function getMyClasses(id) {
+  return db("instructors_classes as ic")
+    .where({ user_id: id })
+    .innerJoin("classes as c", "ic.classes_id", "c.id")
+    .select(
+      "c.id as class_id",
+      "c.name",
+      "c.type",
+      "c.date_time",
+      "c.duration",
+      "c.intensity",
+      "c.location",
+      "c.max_size"
+    );
+}
+
+//* Function to get all classes from a instructor
+function getMyReservations(id) {
+  return db("attendees as a")
+    .where({ user_id: id })
+    .innerJoin("classes as c", "a.classes_id", "c.id")
+    .select(
+      "c.id as class_id",
+      "c.name",
+      "c.type",
+      "c.date_time",
+      "c.duration",
+      "c.intensity",
+      "c.location",
+      "c.max_size"
+    );
+}
+
 //* Export functions
 module.exports = {
   getUserBy,
@@ -82,4 +116,6 @@ module.exports = {
   deleteUser,
   updateUser,
   getAll,
+  getMyClasses,
+  getMyReservations,
 };

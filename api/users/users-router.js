@@ -108,6 +108,50 @@ router.get("/:id", restrictAccess, (req, res) => {
     });
 });
 
+// Get all classes from an isntructor
+router.get("/:id/instructor", checkIfExists.users(User), (req, res) => {
+  const { id } = req.params;
+
+  User.getMyClasses(id)
+    .then((classes) => {
+      if (classes.length) {
+        res.status(200).json(classes);
+      } else {
+        res.status(200).json({ message: "This instructor has no classes" });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({
+        message: "Error getting instructor's classes",
+        error: err.message,
+      });
+    });
+});
+
+// Get all classes from an attendee
+router.get("/:id/attendee", checkIfExists.users(User), (req, res) => {
+  const { id } = req.params;
+
+  User.getMyReservations(id)
+    .then((classes) => {
+      if (classes.length) {
+        res.status(200).json(classes);
+      } else {
+        res
+          .status(200)
+          .json({ message: "This user has not registered to any classes" });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({
+        message: "Error getting attendees' classes",
+        error: err.message,
+      });
+    });
+});
+
+// Get all classes that a user is attending
+
 //-- [PUT]
 // User Edit
 router.put(
