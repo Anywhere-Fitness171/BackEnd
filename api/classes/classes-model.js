@@ -39,10 +39,10 @@ function registerAttendee(attendee) {
 }
 
 //* Function to remove attendee
-function removeAttendee(attendee, classId) {
+function removeAttendee(attendee, classI) {
   return db("attendees").where({
     user_id: attendee,
-    classes_id: classId,
+    classes_id: classI,
   });
 }
 
