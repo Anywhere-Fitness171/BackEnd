@@ -23,18 +23,46 @@ function createUser(user) {
 }
 
 //* Function to delete user
+// function deleteUser(id) {
+//   return getUserBy("id", id).then((user) => {
+//     if (user.role === "instructor") {
+//       return db("classes as c")
+//         .whereIn("c.id", function () {
+//           this.select("classes_id")
+//             .from("instructors_classes")
+//             .where("user_id", id);
+//         })
+//         .del()
+//         .then(() => {
+//           return db("users").where({ id }).del();
+//         });
+//     } else {
+//       return db("users").where({ id }).del();
+//     }
+//   });
+// }
+
 function deleteUser(id) {
   return getUserBy("id", id).then((user) => {
     if (user.role === "instructor") {
-      return db("classes as c")
-        .whereIn("c.id", function () {
-          this.select("classes_id")
-            .from("instructors_classes")
-            .where("user_id", id);
-        })
-        .del()
-        .then(() => {
-          return db("users").where({ id }).del();
+      return db("instructors_classes as ic")
+        .where({ user_id: id })
+        .first()
+        .then((found) => {
+          if (found) {
+            return db("classes as c")
+              .whereIn("c.id", function () {
+                this.select("classes_id")
+                  .from("instructors_classes")
+                  .where("user_id", id);
+              })
+              .del()
+              .then(() => {
+                return db("users").where({ id }).del();
+              });
+          } else {
+            return db("users").where({ id }).del();
+          }
         });
     } else {
       return db("users").where({ id }).del();
