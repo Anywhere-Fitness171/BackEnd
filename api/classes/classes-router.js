@@ -113,7 +113,6 @@ router.put(
   (req, res) => {
     const { id } = req.params;
     const classObj = req.body;
-    console.log(classObj);
 
     Classes.updateClass(classObj, id)
       .then(() => {
