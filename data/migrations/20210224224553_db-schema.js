@@ -8,6 +8,7 @@ exports.up = function (knex) {
       tbl.string("username").notNullable().unique();
       tbl.string("password").notNullable();
       tbl.string("role").notNullable();
+      tbl.timestamp("created_at").defaultTo(knex.fn.now());
     })
     .createTable("classes", (tbl) => {
       tbl.increments();
@@ -18,6 +19,7 @@ exports.up = function (knex) {
       tbl.string("intensity").notNullable();
       tbl.string("location").notNullable();
       tbl.integer("max_size").unsigned().notNullable();
+      tbl.timestamp("created_at").defaultTo(knex.fn.now());
     })
     .createTable("instructors_classes", (tbl) => {
       tbl
